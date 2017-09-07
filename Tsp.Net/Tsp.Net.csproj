@@ -43,21 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormEntities\AttributeName.cs" />
-    <Compile Include="FormEntities\Form.cs" />
-    <Compile Include="FormEntities\Element.cs" />
-    <Compile Include="Controls\Button.cs" />
-    <Compile Include="Controls\Label.cs" />
-    <Compile Include="HtmlForm.cs" />
+    <Compile Include="Control.cs" />
+    <Compile Include="Default.tspx.cs" />
+    <Compile Include="Server Controls\HtmlForm.cs" />
+    <Compile Include="TspxFormEntities\AttributeName.cs" />
+    <Compile Include="TspxFormEntities\Form.cs" />
+    <Compile Include="TspxFormEntities\Element.cs" />
+    <Compile Include="Server Controls\Button.cs" />
+    <Compile Include="Server Controls\Label.cs" />
+    <Compile Include="Writer\HtmlTextWriter.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FormEntities\TagName.cs" />
-    <Compile Include="FormEntities\TagAttribute.cs" />
-    <Compile Include="FormFactory.cs" />
-    <Compile Include="Parser\WebFormParser.cs" />
+    <Compile Include="TspxFormEntities\TagName.cs" />
+    <Compile Include="TspxFormEntities\TagAttribute.cs" />
+    <Compile Include="Parser\FormParser.cs" />
     <Compile Include="Tspx.cs" />
-    <Compile Include="CodeBehindTemplate.cs" />
+    <Compile Include="Writer\CodeBehindTextWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tsp.Net
 {
-    class WebFormParser
+    public class FormParser
     {
         public List<string> ParseElement(StreamReader stream)
         {

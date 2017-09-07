@@ -9,19 +9,19 @@ namespace Tsp.Net
 {
     public class Tspx
     {
-        public void Run()
+        private string _tspxPath;
+
+        public Tspx(string tspxPath)
         {
-            var designPath = @"F:\Work\Git Repo\aspx-handler\WebForm\Tsp.Net\Default.tspx";
-            FileInfo fileInfo = new FileInfo(designPath);
-
-            FormFactory formFactory = new FormFactory();
-            var form=formFactory.Create(designPath);        
-
-            CodeBehindTemplate template = new CodeBehindTemplate();
-            var codeBehindPath = Path.Combine(fileInfo.DirectoryName, $"{fileInfo.Name}.cs");            
-            template.Construct(codeBehindPath,form);
-
-            Page page = new Page();
+            _tspxPath = tspxPath;
+        }
+        public void CreateCodeBehindTemplate()
+        {                        
+            Page page = new Page(_tspxPath);
+            CodeBehindTextWriter template = new CodeBehindTextWriter();
+            FileInfo fi = new FileInfo(_tspxPath);
+            var codeBehindPath = Path.Combine(fi.DirectoryName, $"{fi.Name}.cs");
+            template.Write(codeBehindPath, page.TspxForm);       
         }
     }
 }

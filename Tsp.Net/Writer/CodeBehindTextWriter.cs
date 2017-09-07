@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Tsp.Net
 {
-    public class CodeBehindTemplate
+    public class CodeBehindTextWriter
     {
-        public void Construct(string path, Form form)
+        public void Write(string writeToPath, Form form)
         {
-            FileInfo fi = new FileInfo(path);
+            FileInfo fi = new FileInfo(writeToPath);
 
             using (FileStream fs = fi.Create())
             {
@@ -20,7 +20,8 @@ namespace Tsp.Net
                 sb.Append("using System;\n");
                 sb.Append("using Tsp.Net.Controls;\n");
                 sb.Append("namespace Tsp.Net\n{\n");
-                sb.Append($"public class Page{ CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fi.Name.Substring(0, fi.Name.IndexOf('.')))} : Page\n{{\n");
+                var className = $"Page{ CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fi.Name.Substring(0, fi.Name.IndexOf('.'))) }";
+                sb.Append($"public class { className} : Page\n{{\n");                
                 int btnCount = 0;
                 int lblCount = 0;
                 foreach (Element ele in form.Elements)

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Tsp.Net
 {
-    public class HtmlForm
+    public class HtmlTextWriter
     {        
-        public void Construct(string path, Form form)
+        public void Write(Form form, string writeToPath)
         {
-            FileInfo fi = new FileInfo(path);
+            FileInfo fi = new FileInfo(writeToPath);
 
             using (FileStream fs = fi.Create())
             {
@@ -22,7 +22,7 @@ namespace Tsp.Net
                 sb.Append("</head>");
                 sb.Append("<body>");
                 sb.Append("<form>");
-                
+
                 foreach (Element ele in form.Elements)
                 {
                     string id = "", text = "";
@@ -34,11 +34,11 @@ namespace Tsp.Net
                             id = attrib.Value;
                     }
                     if (ele.Tag == TagName.button)
-                    {                        
-                        sb.Append($"<button type=submit id={id} value=\"{text}\">{text}</button>");                        
+                    {
+                        sb.Append($"<button type=submit id={id} value=\"{text}\">{text}</button>");
                     }
                     else if (ele.Tag == TagName.label)
-                    {                        
+                    {
                         sb.Append($"<label id={id} value=\"{text}\">{text}</label>");
                     }
                 }
@@ -46,7 +46,7 @@ namespace Tsp.Net
                 sb.Append("</body></html>");
                 byte[] buffer = Encoding.ASCII.GetBytes(sb.ToString());
                 fs.Write(buffer, 0, buffer.Length);
-            }
+            }            
         }
     }
 }

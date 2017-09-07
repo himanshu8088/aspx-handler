@@ -6,9 +6,11 @@ namespace Tsp.Net
     {        
         static void Main(string[] args)
         {
-            Tspx tspx = new Tspx();
-            tspx.Run();
-            Console.ReadKey();
+            //string path = @"F:\Work\Git Repo\aspx-handler\WebForm\Tsp.Net\Default.tspx";
+            //Tspx tspx = new Tspx(path);
+            //tspx.CreateCodeBehindTemplate();
+            PageDefault pageDefault = new PageDefault();
+            Console.ReadKey();            
         }               
     }
 }

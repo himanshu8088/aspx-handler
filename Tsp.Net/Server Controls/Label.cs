@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Tsp.Net.Controls
 {
@@ -6,8 +7,7 @@ namespace Tsp.Net.Controls
     {
         public string Id { get; set; }
         public string Text { get; set; }
-
-        public event EventHandler TextChanged;
+        
 
         protected internal override void OnInit(EventArgs e)
         {
@@ -19,14 +19,20 @@ namespace Tsp.Net.Controls
 
         }
 
-        protected internal override void Render(HtmlTextWriter writer)
+        protected internal override void Render()
         {
 
         }
-
-        protected void OnTextChanged(EventArgs e)
+        
+        public override string ToString()
         {
-            TextChanged(this, e);
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<Label ");
+            if (Id.Length != 0)
+                sb.Append($"id = {Id} ");            
+            sb.Append($"> {Text} ");
+            sb.Append("</Label>");
+            return sb.ToString();
         }
     }
 }

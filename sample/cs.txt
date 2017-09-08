@@ -1,0 +1,38 @@
+using System;
+using System.IO;
+using Tsp.Net.Controls;
+namespace Tsp.Net
+{
+    public class PageDefault : Page
+    {
+        Button btn0 = new Button();
+        Label lbl0 = new Label();
+
+        public PageDefault():base(@"D:\GitRepo\Pankaj\aspx-handler\Tsp.Net\Default.tspx")
+        {
+            btn0.Id = "btn1";
+            lbl0.Id = "lbl1";
+            btn0.Text = "button1";
+            lbl0.Text = "label1";
+            PreInit += PreInitHandler;
+            OnPreInit(EventArgs.Empty);
+        }
+
+        protected void PreInitHandler(object sender, EventArgs args)
+        {
+            Console.WriteLine("PreInit handled");
+        }
+
+        protected internal override void Render()
+        {          
+            HtmlTextWriter writer = new HtmlTextWriter();
+            FileInfo fi = new FileInfo(base.TspxPath);
+            var htmlTargetPath = Path.Combine(fi.DirectoryName, "index.html");
+            Control[] control = new Control[2];
+            control[0] = btn0;
+            control[1] = lbl0;
+            writer.Write(htmlTargetPath, control);
+        }
+
+    }
+}

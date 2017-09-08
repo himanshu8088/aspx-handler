@@ -6,14 +6,9 @@ namespace Tsp.Net
 {
     public class Page:Control
     {        
-        public Form TspxForm { get; set; }
-        public HtmlForm HtmlForm { get; set; }
+        public Form TspxForm { get; set; }        
         public string TspxPath { get; set; }
-
-        public Page()
-        {
-
-        }
+        
         
         public Page(string path)
         {
@@ -26,7 +21,8 @@ namespace Tsp.Net
         protected virtual void OnPreInit(EventArgs e)
         {            
             if(PreInit != null)
-                PreInit(this,e);   
+                PreInit(this,e);
+            OnInit(EventArgs.Empty);
         }
         
         private Form CreateForm(FormParser parser,string sourcePath)
@@ -82,17 +78,6 @@ namespace Tsp.Net
 
             }
             return form;
-        }
-
-        protected internal override void Render(HtmlTextWriter writer)
-        {
-            OnPreInit(EventArgs.Empty);
-            OnInit(EventArgs.Empty);
-            FileInfo fi = new FileInfo(TspxPath);
-            var htmlTargetPath = Path.Combine(fi.DirectoryName, "index.html");
-            writer.Write(TspxForm, htmlTargetPath);
-        }
-
-      
+        }      
     }
 }

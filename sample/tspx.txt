@@ -1,0 +1,2 @@
+<button id:1 text:Button>
+<label id:2 text:label>

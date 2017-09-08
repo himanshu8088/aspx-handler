@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Tsp.Net
 {
@@ -6,10 +7,10 @@ namespace Tsp.Net
     {        
         static void Main(string[] args)
         {
-            //string path = @"F:\Work\Git Repo\aspx-handler\WebForm\Tsp.Net\Default.tspx";
-            //Tspx tspx = new Tspx(path);
-            //tspx.CreateCodeBehindTemplate();
-            PageDefault pageDefault = new PageDefault();
+            string path = args[0];
+            Tspx tspx = new Tspx(path);
+            tspx.CreateCodeBehindTemplate();
+            //PageDefault pageDefault = new PageDefault();
             Console.ReadKey();            
         }               
     }

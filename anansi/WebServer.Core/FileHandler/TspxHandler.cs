@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using Tsp.Net;
 namespace WebServer.Core.FileHandler
@@ -19,12 +20,19 @@ namespace WebServer.Core.FileHandler
             Type classType = Type.GetType($"Tsp.Net.{className}");
             object instance = Activator.CreateInstance(classType);
 
-            Page1 page = new Page1();
-            page.HtmlPath = @"D:\Git Repo\Pankaj\aspx-handler\anansi\WebServer.Core\Tspx\index.html";
-            page.Form = form;
+            //Page1 page = new Page1();
+            //page.HtmlPath = @"D:\Git Repo\Pankaj\aspx-handler\anansi\WebServer.Core\Tspx\index.html";
+            //page.Form = form;
 
-            tspx.RunPage(page);
-            return GenerateResponse(page.HtmlPath);
+            var htmlPath = @"D:\Git Repo\Pankaj\aspx-handler\anansi\WebServer.Core\Tspx\index.html";
+            PropertyInfo propHtmlPath = instance.GetType().GetProperty("HtmlPath");
+            propHtmlPath.SetValue(instance, Convert.ChangeType(htmlPath, propHtmlPath.PropertyType), null);
+
+            PropertyInfo propForm = instance.GetType().GetProperty("Form");
+            propForm.SetValue(instance, Convert.ChangeType(form, propForm.PropertyType), null);
+
+            tspx.RunPage(instance as Page);
+            return GenerateResponse(htmlPath);
         }
 
         private IHttpResponse GenerateResponse(string filePath)
